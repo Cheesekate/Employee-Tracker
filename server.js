@@ -21,7 +21,7 @@ connection.connect((function (err) {
 
 function functionAction() {
     inquirer.prompt(frontPrompt)
-        .then(function (answer) {
+        .then(function (answers) {
             executeFunctions(answers.action)
         });
 }
@@ -41,7 +41,7 @@ const frontPrompt = {
     ]
 };
 
-function executeFunction(action) {
+function executeFunctions(action) {
     switch (action) {
         case "View Employee":
             viewTable("employee");
@@ -67,10 +67,10 @@ function executeFunction(action) {
     }
 }
 
-function viewTables(name) {
+function viewTable(name) {
     let queryEmployee = 'SELECT e.id, e.first_name, e.last_name, role.title, department.name AS "department", role.salary, CONCAT(m.first_name,"",m.last_name) AS "manager" FROM employee AS e LEFT JOIN employee AS m ON m.id = e.manager_id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id';
     let queryDepartment = "SELECT * FROM department";
-    let queryRole = "SELECT role.id, role.title, role.salary, department.name FROM role INNER JOIN department ON role.department_id = department.id"
+    let queryRole = "SELECT role.id, role.title, role.salary, department.name FROM role INNER JOIN department ON role.department_id = department.id";
 
     let query = "";
 
@@ -78,7 +78,7 @@ function viewTables(name) {
         case "employee":
             query = queryEmployee;
             break;
-        case "Department":
+        case "Departments":
             query = queryDepartment;
             break;
         case "Role":
