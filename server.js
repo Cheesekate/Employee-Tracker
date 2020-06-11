@@ -22,7 +22,7 @@ connection.connect((function (err) {
 function funtionAction() {
     inquirer.prompt(frontPrompt)
         .then(function (answer) {
-            excuteFunctions(answers.action)
+            executeFunctions(answers.action)
         });
 }
 
@@ -68,7 +68,7 @@ function excuteFunction(action) {
 }
 
 function viewTables(name) {
-    let queryEmployee = "SELECT e.id, e.first_name, e.last_name, role.title, department.name AS "department", role.salary, concat(m.first_name,"",m.last_name) AS "manager" FROM employee AS e LEFT JOIN employee AS m ON m.id = e.manager_id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id";
+    let queryEmployee = 'SELECT e.id, e.first_name, e.last_name, role.title, department.name AS "department", role.salary, CONCAT(m.first_name,"",m.last_name) AS "manager" FROM employee AS e LEFT JOIN employee AS m ON m.id = e.manager_id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id';
     let queryDepartment = "SELECT * FROM department";
     let queryRole = "SELECT role.id, role.title, role.salary, department.name FROM role INNER JOIN department ON role.department_id = department.id"
 

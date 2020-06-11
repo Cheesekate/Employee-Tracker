@@ -17,7 +17,6 @@ CREATE TABLE role(
     PRIMARY KEY(id),
     index (department_id),
     FOREIGN KEY (department_id) REFERENCES department (id)
-
 );
 
 CREATE TABLE employee(
@@ -33,18 +32,17 @@ CREATE TABLE employee(
     FOREIGN KEY (manager_id) REFERENCES employee (id)
 );
 
-
 INSERT INTO department (name)
 VALUES ("Engineering"), ("Legal"), ("Marketing");
 
 INSERT INTO role (title, salary, department_id)
 VALUES 
-("Senior Engineer", 40, 1);
-("Engineer", 10, 1);
-("CFP", 10, 2);
-("Legal", 20, 2);
-("Coder", 20, 3);
-("SEO Intern", 30, 3);
+('Senior Engineer', 40, 1),
+('Engineer', 10, 1),
+('CFP', 10, 2),
+('Legal', 20, 2),
+('Coder', 20, 3),
+('SEO Intern', 30, 3);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
