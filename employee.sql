@@ -38,22 +38,24 @@ INSERT INTO department (name)
 VALUES ("Engineering"), ("Legal"), ("Marketing");
 
 INSERT INTO role (title, salary, department_id)
-VALUE ("CFP", 10, (SELECT id FROM department WHERE name="Legal"));
+VALUES 
+("Senior Engineer", 40, 1);
+("Engineer", 10, 1);
+("CFP", 10, 2);
+("Legal", 20, 2);
+("Coder", 20, 3);
+("SEO Intern", 30, 3);
 
-INSERT INTO role (title, salary, department_id)
-VALUE ("Legal", 20, (SELECT id FROM department WHERE name="Legal"));
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES
+    ('Kate', 'Wade', 1, NULL),
+    ('Jake', 'Smith', 3, 2),
+    ('Tracy', 'Smalls', 4, 2),
+    ('Amanda', 'Jacobson', 5, 1),
+    ('Taylor', 'Willson', 6, 3),
+    ('James', 'Lightman', 7, 2),
+    ('Tim', 'Gard', 8, 1);
 
-INSERT INTO role (title, salary, department_id)
-VALUE ("Senior Engineer", 40, (SELECT id FROM department WHERE name="Engineering"));
-
-INSERT INTO role (title, salary, department_id)
-VALUE ("Engineer", 10, (SELECT id FROM department WHERE name="Engineering"));
-
-INSERT INTO role (title, salary, department_id)
-VALUE ("Coder", 20, (SELECT id FROM department WHERE name="Marketing"));
-
-INSERT INTO role (title, salary, department_id)
-VALUE ("SEO Intern", 30, (SELECT id FROM department WHERE name="Marketing"));
 
 SELECT * FROM role;
 
