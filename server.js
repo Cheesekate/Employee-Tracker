@@ -28,24 +28,24 @@ class Queries {
     }
     async addEmployee(firstName, lastName, role, manager) {
         const roleID = await connection.query("SELECT id FROM role WHERE title=?", [role]);
-        if (manager != "None:){
+        if (manager != "None") {
             const firstName = manager.split(/\s(.+)/)[0];
-        const lastName = manager.split(/\s(.+)/)[1];
-        const managerID = await connection.query("SELECT id FROM employee WHERE ?",
-            [{
-                first_name: firstName
-            },
-            {
-                last_name: lastName
-            }]);
-        return connection.query("INSERT INTO employee SET ?",
-            {
-                first_name: firstName,
-                last_name: lastName,
-                role_id: roleID[0].id,
-                manager_id: managerID[0].id
-            });
-        else {
+            const lastName = manager.split(/\s(.+)/)[1];
+            const managerID = await connection.query("SELECT id FROM employee WHERE ?",
+                [{
+                    first_name: firstName
+                },
+                {
+                    last_name: lastName
+                }]);
+            return connection.query("INSERT INTO employee SET ?",
+                {
+                    first_name: firstName,
+                    last_name: lastName,
+                    role_id: roleID[0].id,
+                    manager_id: managerID[0].id
+                });
+        } else {
             return connection.query("INSERT INTO employee SET ?",
                 {
                     first_name: firstName,
@@ -64,15 +64,14 @@ class Queries {
     viewRole() {
         return connection.query("SELECT * FROM role");
     };
-    ansyc updateEmployee(name, role) {
+    async updateEmployee(name, role) {
         const roleID = await connection.query("SELECT id FROM role WHERE title=?", [role]);
-        if (manager != "None:){
         const firstName = manager.split(/\s(.+)/)[0];
         const lastName = manager.split(/\s(.+)/)[1];
         return connection.query("UPDATE employee SET ? WHERE ?", [
             { role_id: roleID[0].id },
             { first_name: firstName },
-            { last_name: lastName }
+            { last_name: lastName },
         ]);
     }
 
@@ -169,7 +168,7 @@ async function managerArray() {
             return item
         }
     })
-    const uniqueMngArray = [...NEW SET(managerArray)];
+    const uniqueMngArray = [...new SET(managerArray)];
     uniqueMngArray.push("None");
     return uniqueMngArray;
 };
@@ -179,4 +178,47 @@ async function employeeArray() {
     const employeeArrays = employees.map(item => item.first_name + " " + item.last_name);
     return employeeArrays;
 };
+
+async function init() {
+    const ques1 = await inquirer.prompt(ques1);
+    switch (ques1.action) {
+        case "Add Department":
+            const addDep = await inquirer.prompt(departQ);
+            await dbQueries.addDepartment(addDep.name);
+            init();
+            break;
+        case "Add Role":
+            const addRoles = await inquirer.prompt(roleQ);
+            await dbQueries.addRole(addRoles.name, addRoles.salary, addRoles.department);
+            init();
+            break;
+        case "Add Employee":
+            const addEmp = await inquirer.prompt(empQ);
+            await dbQueries.addEmployee(addEmp.firstName, addEmp.lastName, addEmp.role, addEmp.manager);
+            init();
+            break;
+        case "View Department":
+            const departments = await dbQueries.viewDepartment();
+            console.log(departments);
+            init();
+            break;
+        case "View Role":
+            const roles = await dbQueries.viewRole();
+            console.log(roles);
+            init();
+            break;
+        case "View Employee":
+            const employee = await dbQueries.viewEmployee();
+            console.log(employee);
+            init();
+            break;
+        case "Update Employee Role":
+            const updateRole = await inquirer.prompt(employeeRoleQ);
+            await dbQueries.updateEmployee(updateRole.employee, updateRole.role);
+            init();
+            break;
+    }
+}
+
+init();
 
