@@ -16,10 +16,10 @@ connection.connect((function (err) {
         console.error("Error" + err.stack);
         return;
     }
-    frontAction();
+    functionAction();
 }));
 
-function funtionAction() {
+function functionAction() {
     inquirer.prompt(frontPrompt)
         .then(function (answer) {
             executeFunctions(answers.action)
@@ -41,7 +41,7 @@ const frontPrompt = {
     ]
 };
 
-function excuteFunction(action) {
+function executeFunction(action) {
     switch (action) {
         case "View Employee":
             viewTable("employee");
