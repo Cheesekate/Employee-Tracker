@@ -40,8 +40,8 @@ VALUES
 ('Senior Engineer', 40, 1),
 ('Engineer', 10, 1),
 ('CFP', 10, 2),
-('Legal', 20, 2),
-('Coder', 20, 3),
+('Legal Manager', 20, 2),
+('Code Manager', 20, 3),
 ('SEO Intern', 30, 3);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
@@ -54,6 +54,4 @@ VALUES
     ('James', 'Lightman', 7, 2),
     ('Tim', 'Gard', 8, 1);
 
-
-SELECT * FROM role;
 
