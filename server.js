@@ -43,26 +43,26 @@ const frontPrompt = {
 
 function executeFunctions(action) {
     switch (action) {
-        case "View Employee":
+        case "View Employees":
             viewTable("employee");
             break;
         case "View Departments":
             viewTable("department");
             break;
-        case "View Role":
+        case "View Roles":
             viewTable("roles");
             break;
         case "Add Employee":
-            viewTable("addEmployee");
+            addTable("addEmployee");
             break;
         case "Update Employee Role":
-            viewTable("updateEmployee");
+            updateTable("updateEmployee");
             break;
         case "Add Department":
-            viewTable("addDepartment");
+            addTable("addDepartment");
             break;
         case "Add Role":
-            viewTable("addRole");
+            addTable("addRole");
             break;
     }
 }
