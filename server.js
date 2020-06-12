@@ -107,13 +107,12 @@ function viewTable(name) {
 
 }
 
-function(addEmployee(){
+function addEmployee() {
     let queryaddEmployee = 'SELECT * FROM department';
     let queryupdateEmployee = 'SELECT * FROM department';
     let queryaddRole = 'SELECT * FROM department';
 
-}
-)
+};
 
 
 
