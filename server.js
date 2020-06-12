@@ -14,19 +14,20 @@ const connection = mysql.createConnection({
 connection.connect((function (err) {
     if (err) {
         console.error("Error" + err.stack);
+        connection.end();
         return;
     }
     functionAction();
 }));
 
 function functionAction() {
-    inquirer.prompt(frontPrompt)
+    inquirer.prompt(start)
         .then(function (answers) {
             executeFunctions(answers.action)
         });
 }
 
-const frontPrompt = {
+const start = {
     type: 'list',
     name: 'action',
     message: 'What what would you like to do?',
@@ -37,7 +38,8 @@ const frontPrompt = {
         "Add Employee",
         "Update Employee Role",
         "Add Department",
-        "Add Role"
+        "Add Role",
+        "Exit"
     ]
 };
 
@@ -63,6 +65,9 @@ function executeFunctions(action) {
             break;
         case "Add Role":
             addEmployee("addRole");
+            break;
+        case "Exit":
+            exitPrompt();
             break;
     }
 }
