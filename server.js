@@ -53,16 +53,16 @@ function executeFunctions(action) {
             viewTable("roles");
             break;
         case "Add Employee":
-            addTable("addEmployee");
+            addEmployee("addEmployee");
             break;
         case "Update Employee Role":
-            updateTable("updateEmployee");
+            updateEmployee("updateEmployee");
             break;
         case "Add Department":
-            addTable("addDepartment");
+            addEmployee("addDepartment");
             break;
         case "Add Role":
-            addTable("addRole");
+            addEmployee("addRole");
             break;
     }
 }
@@ -71,9 +71,6 @@ function viewTable(name) {
     let queryEmployee = 'SELECT e.id, e.first_name, e.last_name, role.title, department.name AS "department", role.salary, CONCAT(m.first_name,"",m.last_name) AS "manager" FROM employee AS e LEFT JOIN employee AS m ON m.id = e.manager_id INNER JOIN role ON e.role_id = role.id INNER JOIN department ON role.department_id = department.id';
     let queryDepartment = 'SELECT * FROM department';
     let queryRole = 'SELECT role.id, role.title, role.salary, department.name FROM role INNER JOIN department ON role.department_id = department.id';
-    let queryaddEmployee = 'SELECT * FROM department';
-    let queryupdateEmployee = 'SELECT * FROM department';
-    let queryaddRole = 'SELECT * FROM department';
 
     let query = "";
 
@@ -92,23 +89,32 @@ function viewTable(name) {
             break;
         case "Add Employee":
             query = queryaddEmployee;
-            viewTable(name);
+            addEmployee(name);
             break;
         case "Update Employee Role":
-            query = updateEmployee;
-            viewTable(name);
+            query = queryupdateEmployee;
+            updateEmployee(name);
             break;
         case "Add Department":
-            query = addDepartment;
-            viewTable(name);
+            query = queryaddDepartment;
+            addEmployee(name);
             break;
         case "Add Role":
-            query = addRole;
-            viewTable(name);
+            query = queryaddRole;
+            addEmployee(name);
             break;
     }
 
 }
+
+function(addEmployee(){
+    let queryaddEmployee = 'SELECT * FROM department';
+    let queryupdateEmployee = 'SELECT * FROM department';
+    let queryaddRole = 'SELECT * FROM department';
+
+}
+)
+
 
 
 
