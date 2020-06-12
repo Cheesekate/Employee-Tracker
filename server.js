@@ -17,10 +17,10 @@ connection.connect((function (err) {
         connection.end();
         return;
     }
-    functionAction();
+    promptUser();
 }));
 
-function functionAction() {
+function promptUser() {
     inquirer.prompt(start)
         .then(function (answers) {
             executeFunctions(answers.action)
@@ -69,6 +69,7 @@ function executeFunctions(action) {
         case "Exit":
             exitPrompt();
             break;
+
     }
 }
 
@@ -102,18 +103,18 @@ function viewTable(name) {
             break;
         case "Add Department":
             query = queryaddDepartment;
-            addEmployee(name);
+            addDepartment(name);
             break;
         case "Add Role":
             query = queryaddRole;
-            addEmployee(name);
+            addRole(name);
             break;
     }
 
 }
 
 function addEmployee() {
-    let queryaddEmployee = 'SELECT * FROM department';
+    let queryaddEmployee = 'INPUT ';
     let queryupdateEmployee = 'SELECT * FROM department';
     let queryaddRole = 'SELECT * FROM department';
 
