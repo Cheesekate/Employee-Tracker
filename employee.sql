@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS employee_trackerDB;
-CREATE database employee_trackerDB;
+DROP DATABASE IF EXISTS employee_hwDB;
+CREATE database employee_hwDB;
 
-USE employee_trackerDB;
+USE employee_hwDB;
 
 CREATE TABLE department(
     id INT NOT NULL AUTO_INCREMENT,
@@ -50,8 +50,6 @@ VALUES
     ('Jake', 'Smith', 3, 2),
     ('Tracy', 'Smalls', 4, 2),
     ('Amanda', 'Jacobson', 5, 1),
-    ('Taylor', 'Willson', 6, 3),
-    ('James', 'Lightman', 7, 2),
-    ('Tim', 'Gard', 8, 1);
+    ('Taylor', 'Willson', 6, 3);
 
 
